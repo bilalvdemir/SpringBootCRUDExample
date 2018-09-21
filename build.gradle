@@ -26,6 +26,10 @@ repositories {
 	maven { url "https://repo.spring.io/milestone" }
 }
 
+jar {
+    baseName = 'springbootcrudexample'
+    version = rootProject.file('version.txt').text.trim()
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web-services')
@@ -33,7 +37,5 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-mongodb:1.5.6.RELEASE")
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	
-	
-	
+
 }

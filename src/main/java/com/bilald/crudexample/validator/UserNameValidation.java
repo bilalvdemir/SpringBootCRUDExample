@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UserNameValidation {
-    String message() default "Address attribute is not valid!";
+    String message() default "Attribute is not valid!";
 
     Class<?>[] groups() default {};
 

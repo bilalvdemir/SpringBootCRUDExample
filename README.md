@@ -32,3 +32,14 @@ Sample user service, includes:
  - @Target
  - @Retention
  - Custom Validator Annotation
+
+# Start Application With Docker
+ - Learn Docker version
+   docker -v
+   if docker dont installed, Setup file link : https://docs.docker.com/docker-for-windows/install/
+ - Build docker in root directory
+   docker build -f Dockerfile -t spring-boot-crud-example .
+ - Show docker builded images
+   docker images
+ - Run docker image with exposed port 
+   docker run -p 8090:8090 spring-boot-crud-example

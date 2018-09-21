@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: user-crud-example
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: usercrud
+server:
+  port: 8090

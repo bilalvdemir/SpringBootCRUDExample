@@ -19,12 +19,12 @@ public class Utils {
 
     public static final String  FIELD_VALIDATION_MESSAGE_PATTERN = "{0}\n{1}";
 
-    public static final Pattern PASSWORD_VALIDATION              = Pattern.compile(USER_NAME_VALIDATION_REGEX);
+    public static final Pattern USERNAME_VALIDATION_PATTERN      = Pattern.compile(USER_NAME_VALIDATION_REGEX);
 
     public static final String  PASSWORD_VALIDATION_REGEX        = "(^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$)?(^(?=.*\\d)(?=.*[a-z])(?=.*[@#$%^&+=]).*$)?(^(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).*$)?(^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$)?";
 
     public static final String  USERNAME_REQUIRED_EXCEPTION      = "'username' attribute is required! username value is Null";
-    
+
     public static final String  PASSWORD_REQUIRED_EXCEPTION      = "'password' attribute is required! username value is Null";
 
     public static String getUsernameAlreadyExistException(String username) {

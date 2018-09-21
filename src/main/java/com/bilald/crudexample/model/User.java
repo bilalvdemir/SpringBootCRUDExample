@@ -14,7 +14,7 @@ public class User {
     @Id
     private String id;
 
-    @UserNameValidation(message = Utils.USERNAME_NOT_VALID_EXCEPTION)
+    @UserNameValidation
     @NotNull(message = Utils.USERNAME_REQUIRED_EXCEPTION)
     private String username;
 

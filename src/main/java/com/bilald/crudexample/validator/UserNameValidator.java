@@ -1,5 +1,7 @@
 package com.bilald.crudexample.validator;
 
+import java.util.regex.Matcher;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -14,9 +16,14 @@ public class UserNameValidator implements ConstraintValidator<UserNameValidation
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        // my validator example to simple. You can make more than complex validations
         if (value != null) {
-            return value.matches(Utils.USER_NAME_VALIDATION_REGEX);
+            Matcher matcher = Utils.USERNAME_VALIDATION_PATTERN.matcher(value);
+            if (!matcher.matches()) {
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate(Utils.USERNAME_NOT_VALID_EXCEPTION).addConstraintViolation();
+                return false;
+            }
+            return true;
         }
         return false;
     }

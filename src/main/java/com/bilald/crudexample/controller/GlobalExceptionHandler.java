@@ -44,7 +44,6 @@ public class GlobalExceptionHandler {
         while (ite.hasNext()) {
             FieldError err = (FieldError) ite.next();
             exceptionString = exceptionString != null ? Utils.addFieldValidationException(exceptionString, err.getDefaultMessage()) : err.getDefaultMessage();
-    
         }
         return ResponseEntity.badRequest().body(exceptionString);
     }

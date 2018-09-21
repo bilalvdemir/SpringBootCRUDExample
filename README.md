@@ -42,7 +42,7 @@ This project includes:
    docker -v
    ```
    if docker dont installed: 
-   * [Docker For Windows](https://docs.docker.com/docker-for-windows/install/) - Donwload Setup
+   * [Docker For Windows](https://docs.docker.com/docker-for-windows/install/) - Download Setup
    
  - Build docker in root directory
    ```

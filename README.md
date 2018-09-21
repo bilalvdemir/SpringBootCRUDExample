@@ -3,7 +3,7 @@ Used simple pojo for showing MongDB CRUD operations and validations
 
 ## Getting Started
 This project includes:
- - CREATE, Retrieve, Update, Delete
+ - CREATE, Retrieve, Update, Delete Operations
  - MVC Pattern
  - Web Service
  - Logger

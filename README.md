@@ -1,5 +1,8 @@
 # Spring Boot CRUD Example MVC
-Sample user service, includes:
+Used simple pojo for showing MongDB CRUD operations and validations
+
+## Getting Started
+This project includes:
  - CREATE, Retrieve, Update, Delete
  - MVC Pattern
  - Web Service
@@ -35,11 +38,29 @@ Sample user service, includes:
 
 # Start Application With Docker
  - Learn Docker version
+   ```
    docker -v
-   if docker dont installed, Setup file link : https://docs.docker.com/docker-for-windows/install/
+   ```
+   if docker dont installed: 
+   * [Docker For Windows](https://docs.docker.com/docker-for-windows/install/) - Donwload Setup
+   
  - Build docker in root directory
+   ```
    docker build -f Dockerfile -t spring-boot-crud-example .
+   ```
  - Show docker builded images
+   ```
    docker images
+   ```
  - Run docker image with exposed port 
+   ```
    docker run -p 8090:8090 spring-boot-crud-example
+   ```
+
+## Contributing
+
+Please read [CHANGELOG.md](https://github.com/bilalvdemir/SpringBootCRUDExample/blob/master/CHANGELOG.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Authors
+
+* **Bilal Demir** - *Initial work* - [bilalvdemir](https://github.com/bilalvdemir)

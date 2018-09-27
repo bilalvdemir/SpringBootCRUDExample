@@ -38,6 +38,7 @@ This project includes:
 
 # Start Application With Docker
  - Build Jar with Gradle
+   
    Linux:
    ```
    gradle build

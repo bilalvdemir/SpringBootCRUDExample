@@ -37,6 +37,15 @@ This project includes:
  - Custom Validator Annotation
 
 # Start Application With Docker
+ - Build Jar with Gradle
+   Linux:
+   ```
+   gradle build
+   ```
+   Windows:
+   ```
+   ./gradlew build
+   ```
  - Learn Docker version
    ```
    docker -v

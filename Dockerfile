@@ -3,4 +3,4 @@ ADD build/libs/*.jar /
 ADD version.txt /version.txt
 ADD build.gradle /build.gradle
 EXPOSE 8090
-ENTRYPOINT [ "java", "-jar", "/springbootcrudexample*.jar"]
+ENTRYPOINT [ "java", "-jar", "springbootcrudexample-0.1.jar"]

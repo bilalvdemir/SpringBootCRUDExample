@@ -8,9 +8,12 @@
 
 **Implementations**
 
+ - MongoDB
+ - Validations
  - CassandraDB
  - Cassandra Template
  - Exceptions
+ - Regex and Pattern
  - Web service
  - dockerize
  

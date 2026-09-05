@@ -43,3 +43,4 @@ Thumbs.db
 # Other
 .metadata/
 .recommenders/
+/mvnw.cmd

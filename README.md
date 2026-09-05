@@ -2,7 +2,7 @@
 
 Modern, production-ready Spring Boot 3.x REST API with MongoDB, Redis caching, monitoring, and observability.
 
-## 🚀 Features
+## Features
 
 ### Core Functionality
 - ✅ Full CRUD operations for User management
@@ -56,7 +56,7 @@ Modern, production-ready Spring Boot 3.x REST API with MongoDB, Redis caching, m
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Java 21+
 - Maven 3.9+
@@ -87,6 +87,10 @@ docker-compose down
 # Start MongoDB and Redis
 docker-compose up -d mongodb redis
 
+```bash
+# Stop MongoDB and Redis
+docker-compose down mongodb redis
+
 # Run the application (using Maven wrapper)
 ./mvnw spring-boot:run
 
@@ -99,7 +103,7 @@ java -jar target/springbootcrudexample-1.0.0.jar
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 Base URL: `http://localhost:8090/api/v1`
 
@@ -122,7 +126,7 @@ curl -X POST http://localhost:8090/api/v1/users \
   -d '{
     "username": "johndoe",
     "email": "john@example.com",
-    "password": "SecurePass123!",
+    "password": "SecurePass123@!",
     "name": "John",
     "lastname": "Doe"
   }'
@@ -145,7 +149,7 @@ curl -X PUT http://localhost:8090/api/v1/users/{id} \
 
 ---
 
-## 📊 Monitoring & Observability
+## Monitoring & Observability
 
 ### Swagger UI
 - **URL:** http://localhost:8090/swagger-ui.html
@@ -169,7 +173,7 @@ curl -X PUT http://localhost:8090/api/v1/users/{id} \
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 src/main/java/com/bilald/crudexample/
@@ -210,7 +214,7 @@ src/main/java/com/bilald/crudexample/
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -225,7 +229,7 @@ src/main/java/com/bilald/crudexample/
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Key configuration in `application.yml`:
 
@@ -248,7 +252,7 @@ management.endpoints.web.exposure.include=health,info,metrics,prometheus
 
 ---
 
-## 📈 Performance Features
+## Performance Features
 
 ### Caching Strategy
 - **User lookups** cached for 30 minutes
@@ -262,7 +266,7 @@ management.endpoints.web.exposure.include=health,info,metrics,prometheus
 
 ---
 
-## 🔒 Validation Rules
+## Validation Rules
 
 ### Username
 - Must start with a letter
@@ -277,7 +281,7 @@ management.endpoints.web.exposure.include=health,info,metrics,prometheus
 
 ---
 
-## 📝 Error Handling
+## Error Handling
 
 All errors follow a standardized format:
 
@@ -302,7 +306,7 @@ All errors follow a standardized format:
 
 ---
 
-## 🚦 Health Checks
+## Health Checks
 
 The application includes comprehensive health checks:
 
@@ -313,7 +317,7 @@ The application includes comprehensive health checks:
 
 ---
 
-## 📦 Building for Production
+## Building for Production
 
 ```bash
 # Build optimized JAR
@@ -333,7 +337,7 @@ docker run -d \
 
 ---
 
-## 📚 Technology Stack
+## Technology Stack
 
 - **Framework:** Spring Boot 3.2.1
 - **Language:** Java 21 LTS
@@ -351,7 +355,7 @@ docker run -d \
 
 ---
 
-## 🎯 Best Practices Implemented
+## Best Practices Implemented
 
 ✅ Clean Code principles
 ✅ SOLID principles
@@ -366,18 +370,18 @@ docker run -d \
 
 ---
 
-## 📄 License
+## License
 
 MIT License
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Please read [CHANGELOG.md](https://github.com/bilalvdemir/SpringBootCRUDExample/blob/master/CHANGELOG.md) for details.
 
 ---
 
-## 👤 Authors
+## Authors
 
 * **Bilal Demir** - *Initial work* - [bilalvdemir](https://github.com/bilalvdemir)

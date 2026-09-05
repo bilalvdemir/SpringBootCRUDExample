@@ -14,6 +14,10 @@ public enum ErrorCode {
     USERNAME_ALREADY_TAKEN("4003", "Username is already taken", HttpStatus.CONFLICT),
     EMAIL_ALREADY_REGISTERED("4004", "Email is already registered", HttpStatus.CONFLICT),
 
+    // Employee errors (4xxx)
+    EMPLOYEE_NOT_FOUND("4011", "Employee not found", HttpStatus.NOT_FOUND),
+    EMPLOYEE_ALREADY_EXISTS("4012", "Employee already exists", HttpStatus.CONFLICT),
+
     // Validation errors (4xxx)
     VALIDATION_ERROR("4100", "Validation failed", HttpStatus.BAD_REQUEST),
     INVALID_INPUT("4101", "Invalid input provided", HttpStatus.BAD_REQUEST),

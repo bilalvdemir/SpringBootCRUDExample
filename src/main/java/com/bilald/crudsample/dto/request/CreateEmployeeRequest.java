@@ -1,9 +1,7 @@
 package com.bilald.crudsample.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import com.bilald.crudsample.model.EmployeeRole;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequest {
+public class CreateEmployeeRequest {
 
     @NotBlank(message = "Username is required")
     @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9.,$;]+$",
@@ -35,4 +33,11 @@ public class CreateUserRequest {
 
     @Size(max = 100, message = "Lastname cannot exceed 100 characters")
     private String lastname;
+
+    @NotBlank(message = "Department is required")
+    @Size(max = 100, message = "Department cannot exceed 100 characters")
+    private String department;
+
+    @NotNull(message = "Role is required")
+    private EmployeeRole role;
 }

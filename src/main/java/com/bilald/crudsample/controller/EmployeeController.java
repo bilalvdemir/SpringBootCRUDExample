@@ -23,48 +23,48 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/employees")
 @RequiredArgsConstructor
 @Slf4j
-@Tag(name = "Employee Management", description = "APIs for managing users")
+@Tag(name = "Employee Management", description = "APIs for managing employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
     private final EmployeeMapper employeeMapper;
 
     @Operation(
-        summary = "Get all users",
-        description = "Retrieves paginated list of all users"
+        summary = "Get all employees",
+        description = "Retrieves paginated list of all employees"
     )
-    @ApiResponse(responseCode = "200", description = "Successfully retrieved users")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved employees")
     @ApiResponse(responseCode = "429", description = "Too many requests - Rate limit: 10 requests per second per IP")
     @GetMapping
     public ResponseEntity<Page<EmployeeResponse>> getAllEmployees(
             @PageableDefault(size = 20, sort = "createdAt") Pageable pageable) {
 
-        log.info("Fetching users with pagination: {}", pageable);
+        log.info("Fetching employees with pagination: {}", pageable);
 
-        var users = employeeService.getAllEmployees(pageable);
-        var response = users.map(employeeMapper::toResponse);
+        var employees = employeeService.getAllEmployees(pageable);
+        var response = employees.map(employeeMapper::toResponse);
 
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Get user by username")
+    @Operation(summary = "Get employee by username")
     @ApiResponse(responseCode = "200", description = "Employee found")
     @ApiResponse(responseCode = "404", description = "Employee not found")
     @ApiResponse(responseCode = "429", description = "Too many requests - Rate limit: 10 requests per second per IP")
     @GetMapping("/{username}")
     public ResponseEntity<EmployeeResponse> getEmployeeByUsername(
-            @Parameter(description = "Username of the user")
+            @Parameter(description = "Username of the employee")
             @PathVariable String username) {
 
-        log.info("Fetching user: {}", username);
+        log.info("Fetching employee: {}", username);
 
-        var user = employeeService.getEmployeeByUsername(username);
-        var response = employeeMapper.toResponse(user);
+        var employee = employeeService.getEmployeeByUsername(username);
+        var response = employeeMapper.toResponse(employee);
 
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Create new user")
+    @Operation(summary = "Create new employee")
     @ApiResponse(responseCode = "201", description = "Employee created successfully")
     @ApiResponse(responseCode = "400", description = "Invalid input")
     @ApiResponse(responseCode = "409", description = "Employee already exists")
@@ -73,16 +73,16 @@ public class EmployeeController {
     public ResponseEntity<EmployeeResponse> createEmployee(
             @Valid @RequestBody CreateEmployeeRequest request) {
 
-        log.info("Creating user: {}", request.getUsername());
+        log.info("Creating employee: {}", request.getUsername());
 
-        var user = employeeMapper.toEntity(request);
-        var createdEmployee = employeeService.createEmployee(user);
+        var employee = employeeMapper.toEntity(request);
+        var createdEmployee = employeeService.createEmployee(employee);
         var response = employeeMapper.toResponse(createdEmployee);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @Operation(summary = "Update user")
+    @Operation(summary = "Update employee")
     @ApiResponse(responseCode = "200", description = "Employee updated successfully")
     @ApiResponse(responseCode = "404", description = "Employee not found")
     @ApiResponse(responseCode = "429", description = "Too many requests - Rate limit: 10 requests per second per IP")
@@ -91,7 +91,7 @@ public class EmployeeController {
             @PathVariable String id,
             @Valid @RequestBody UpdateEmployeeRequest request) {
 
-        log.info("Updating user: {}", id);
+        log.info("Updating employee: {}", id);
 
         var updatedEmployee = employeeService.updateEmployee(id, request);
         var response = employeeMapper.toResponse(updatedEmployee);
@@ -99,14 +99,14 @@ public class EmployeeController {
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Delete user")
+    @Operation(summary = "Delete employee")
     @ApiResponse(responseCode = "204", description = "Employee deleted successfully")
     @ApiResponse(responseCode = "404", description = "Employee not found")
     @ApiResponse(responseCode = "429", description = "Too many requests - Rate limit: 10 requests per second per IP")
     @DeleteMapping("/{username}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable String username) {
 
-        log.info("Deleting user: {}", username);
+        log.info("Deleting employee: {}", username);
 
         employeeService.deleteEmployee(username);
 

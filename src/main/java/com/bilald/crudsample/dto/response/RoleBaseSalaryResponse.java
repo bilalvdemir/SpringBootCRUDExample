@@ -1,28 +1,24 @@
 package com.bilald.crudsample.dto.response;
 
+import com.bilald.crudsample.common.enums.Currency;
 import com.bilald.crudsample.common.enums.EmployeeRole;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
 
 @Data
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeResponse {
+public class RoleBaseSalaryResponse {
 
     private String id;
-    private String username;
-    private String email;
-    private String name;
-    private String lastname;
-    private String department;
     private EmployeeRole role;
+    private double baseSalary;
+    private Currency currency;
     private Instant createdAt;
     private Instant updatedAt;
-
-    // NO PASSWORD - Security first!
 }

@@ -1,5 +1,6 @@
 package com.bilald.crudsample.model;
 
+import com.bilald.crudsample.common.enums.EmployeeRole;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.index.Indexed;

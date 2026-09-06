@@ -13,10 +13,15 @@ public enum ErrorCode {
     USER_ALREADY_EXISTS("4002", "User already exists", HttpStatus.CONFLICT),
     USERNAME_ALREADY_TAKEN("4003", "Username is already taken", HttpStatus.CONFLICT),
     EMAIL_ALREADY_REGISTERED("4004", "Email is already registered", HttpStatus.CONFLICT),
+    USER_NOT_EMPLOYEE("4005", "User not employee", HttpStatus.BAD_REQUEST),
 
     // Employee errors (4xxx)
     EMPLOYEE_NOT_FOUND("4011", "Employee not found", HttpStatus.NOT_FOUND),
     EMPLOYEE_ALREADY_EXISTS("4012", "Employee already exists", HttpStatus.CONFLICT),
+
+    // RoleBaseSalary errors (4xxx)
+    ROLE_BASE_SALARY_NOT_FOUND("4021", "Role base salary not found", HttpStatus.NOT_FOUND),
+    ROLE_BASE_SALARY_ALREADY_EXISTS("4022", "Role base salary already exists", HttpStatus.CONFLICT),
 
     // Validation errors (4xxx)
     VALIDATION_ERROR("4100", "Validation failed", HttpStatus.BAD_REQUEST),

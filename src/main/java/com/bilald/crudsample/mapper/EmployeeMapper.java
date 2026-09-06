@@ -4,6 +4,7 @@ import com.bilald.crudsample.dto.request.CreateEmployeeRequest;
 import com.bilald.crudsample.dto.request.UpdateEmployeeRequest;
 import com.bilald.crudsample.dto.response.EmployeeResponse;
 import com.bilald.crudsample.model.Employee;
+import com.bilald.crudsample.model.SalaryInfo;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -32,4 +33,7 @@ public interface EmployeeMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "version", ignore = true)
     void updateEntity(UpdateEmployeeRequest request, @MappingTarget Employee employee);
+
+    @Mapping(target = "salary", expression = "java(salary)")
+    SalaryInfo toSalaryInfo(Employee employee, double salary);
 }

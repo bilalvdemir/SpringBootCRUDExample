@@ -1,6 +1,6 @@
 package com.bilald.crudsample.dto.request;
 
-import com.bilald.crudsample.model.EmployeeRole;
+import com.bilald.crudsample.common.enums.EmployeeRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

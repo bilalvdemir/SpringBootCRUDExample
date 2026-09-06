@@ -5,54 +5,57 @@ Modern, production-ready Spring Boot 3.x REST API with MongoDB, Redis caching, m
 ## Features
 
 ### Core Functionality
-- ✅ Full CRUD operations for User management
-- ✅ RESTful API design with proper HTTP status codes
-- ✅ DTO pattern for request/response separation
-- ✅ MapStruct for efficient DTO mapping
+-  Full CRUD operations for User management
+-  Full CRUD operations for Employee management
+-  Dynamic salary calculation with Strategy Pattern
+-  Multi-currency support with currency conversion
+-  RESTful API design with proper HTTP status codes
+-  DTO pattern for request/response separation
+-  MapStruct for efficient DTO mapping
 
 ### Architecture & Design
-- ✅ Clean layered architecture (Controller → Service → Repository)
-- ✅ Spring Boot 3.2.1 with Java 17
-- ✅ MongoDB for data persistence
-- ✅ Redis for caching
-- ✅ Lombok for code reduction
+-  Clean layered architecture (Controller → Service → Repository)
+-  Spring Boot 3.2.1 with Java 17
+-  MongoDB for data persistence
+-  Redis for caching
+-  Lombok for code reduction
 
 ### Data Validation & Exception Handling
-- ✅ Jakarta Validation (JSR-380)
-- ✅ Custom validation annotations
-- ✅ Global exception handling with @RestControllerAdvice
-- ✅ Standardized error responses with error codes
-- ✅ Runtime exceptions (no checked exceptions)
+-  Jakarta Validation (JSR-380)
+-  Custom validation annotations
+-  Global exception handling with @RestControllerAdvice
+-  Standardized error responses with error codes
+-  Runtime exceptions (no checked exceptions)
 
 ### Performance & Resilience
-- ✅ Redis caching with Spring Cache
-- ✅ Pagination support
-- ✅ Resilience4j (Circuit Breaker, Retry, Rate Limiter)
-- ✅ Optimistic locking with @Version
+-  Redis caching with Spring Cache
+-  Pagination support
+-  Resilience4j (Circuit Breaker, Retry, Rate Limiter)
+-  Optimistic locking with @Version
 
 ### Monitoring & Observability
-- ✅ Spring Boot Actuator
-- ✅ Prometheus metrics export
-- ✅ Grafana dashboards
-- ✅ Custom business metrics
-- ✅ Health checks
-- ✅ Distributed tracing support
-- ✅ Structured JSON logging (Logstash format)
+-  Spring Boot Actuator
+-  Prometheus metrics export
+-  Grafana dashboards
+-  Custom business metrics
+-  Health checks
+-  Distributed tracing support
+-  Structured JSON logging (Logstash format)
 
 ### API Documentation
-- ✅ OpenAPI 3.0 (Swagger)
-- ✅ Interactive API documentation UI
+-  OpenAPI 3.0 (Swagger)
+-  Interactive API documentation UI
 
 ### Testing
-- ✅ Unit tests with JUnit 5 & Mockito
-- ✅ Repository tests with Testcontainers
-- ✅ AssertJ for fluent assertions
+-  Unit tests with JUnit 5 & Mockito
+-  Repository tests with Testcontainers
+-  AssertJ for fluent assertions
 
 ### DevOps
-- ✅ Docker & Docker Compose
-- ✅ Multi-stage Dockerfile
-- ✅ Health checks in containers
-- ✅ Non-root container user
+-  Docker & Docker Compose
+-  Multi-stage Dockerfile
+-  Health checks in containers
+-  Non-root container user
 
 ---
 
@@ -117,6 +120,22 @@ Base URL: `http://localhost:8090/api/v1`
 | PUT | `/users/{id}` | Update user |
 | DELETE | `/users/{username}` | Delete user |
 
+### Employee Management
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/employees` | Get all employees (paginated) |
+| GET | `/employees/{username}` | Get employee by username |
+| POST | `/employees` | Create new employee |
+| PUT | `/employees/{id}` | Update employee |
+| DELETE | `/employees/{username}` | Delete employee |
+
+### Salary Calculation
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/salary/` | Calculate salary for an employee |
+
 ### Example Requests
 
 **Create User:**
@@ -176,40 +195,56 @@ curl -X PUT http://localhost:8090/api/v1/users/{id} \
 ## Project Structure
 
 ```
-src/main/java/com/bilald/crudexample/
-├── config/                 # Configuration classes
+src/main/java/com/bilald/crudsample/
+├── common/
+│   └── enums/
+│       ├── Currency.java
+│       └── EmployeeRole.java         # MANAGER, DIRECTOR, STAFF
+├── config/                           # Configuration classes
 │   ├── CacheConfig.java
 │   ├── MongoConfig.java
 │   ├── OpenApiConfig.java
 │   └── ResilienceConfig.java
-├── controller/             # REST Controllers
-│   └── UserController.java
-├── dto/                    # Data Transfer Objects
+├── controller/                       # REST Controllers
+│   ├── UserController.java
+│   ├── EmployeeController.java
+│   └── SalaryController.java
+├── dto/                              # Data Transfer Objects
 │   ├── request/
 │   │   ├── CreateUserRequest.java
-│   │   └── UpdateUserRequest.java
+│   │   ├── CreateEmployeeRequest.java
+│   │   └── SalaryInfoRequest.java
 │   └── response/
-│       ├── ErrorResponse.java
-│       └── UserResponse.java
-├── exception/              # Exception handling
+│       ├── UserResponse.java
+│       ├── EmployeeResponse.java
+│       └── SalaryInfoResponse.java
+├── exception/                        # Exception handling
 │   ├── BusinessException.java
-│   ├── ErrorCode.java
 │   ├── GlobalExceptionHandler.java
-│   ├── UserAlreadyExistsException.java
-│   └── UserNotFoundException.java
-├── health/                 # Custom health indicators
-│   └── DatabaseHealthIndicator.java
-├── mapper/                 # MapStruct mappers
-│   └── UserMapper.java
-├── model/                  # Domain entities
-│   └── User.java
-├── monitoring/             # Custom metrics
-│   └── UserMetrics.java
-├── repository/             # Data access layer
-│   └── UserRepository.java
-└── service/                # Business logic
+│   ├── UserNotFoundException.java
+│   └── EmployeeNotFoundException.java
+├── mapper/                           # MapStruct mappers
+│   ├── UserMapper.java
+│   ├── EmployeeMapper.java
+│   └── SalaryMapper.java
+├── model/                            # Domain entities
+│   ├── User.java
+│   ├── Employee.java                 # extends User
+│   └── GetSalaryInfoDetail.java
+├── repository/                       # Data access layer
+│   ├── UserRepository.java
+│   └── EmployeeRepository.java
+└── service/                          # Business logic
     ├── UserService.java
-    └── UserServiceImpl.java
+    ├── EmployeeService.java
+    ├── SalaryService.java
+    └── calculate/                    # Strategy Pattern
+        ├── RoleSalaryCalculator.java           # Strategy interface
+        ├── RoleSalaryCalculatorRegistry.java   # Strategy registry
+        ├── SalaryCalculatorService.java
+        ├── DirectorRoleSalaryCalculator.java   # Concrete strategy
+        ├── ManagerRoleSalaryCalculator.java    # Concrete strategy
+        └── StaffRoleSalaryCalculator.java      # Concrete strategy
 ```
 
 ---
@@ -306,6 +341,105 @@ All errors follow a standardized format:
 
 ---
 
+## Salary Calculation - Strategy Pattern
+
+The salary calculation feature uses the **Strategy Pattern** to dynamically calculate salaries based on employee roles. This design allows for easy extension and maintenance of role-specific salary logic.
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      SalaryController                            │
+│                  POST /api/v1/salary/                            │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       SalaryService                              │
+│              Orchestrates salary calculation                     │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                 SalaryCalculatorService                          │
+│         Delegates to appropriate role calculator                 │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              RoleSalaryCalculatorRegistry                        │
+│    Maps EmployeeRole → RoleSalaryCalculator (Strategy)          │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+│ DirectorRole    │ │ ManagerRole     │ │ StaffRole       │
+│ SalaryCalculator│ │ SalaryCalculator│ │ SalaryCalculator│
+│ (multiplier:1.08)│ │(multiplier:1.05)│ │(multiplier:1.03)│
+└─────────────────┘ └─────────────────┘ └─────────────────┘
+```
+
+### Components
+
+| Component | Description |
+|-----------|-------------|
+| `RoleSalaryCalculator` | Strategy interface defining `calculateSalary()` method |
+| `RoleSalaryCalculatorRegistry` | Registry that maps employee roles to their calculators |
+| `DirectorRoleSalaryCalculator` | Calculates salary for DIRECTOR role (8% annual seniority bonus) |
+| `ManagerRoleSalaryCalculator` | Calculates salary for MANAGER role (5% annual seniority bonus) |
+| `StaffRoleSalaryCalculator` | Calculates salary for STAFF role (3% annual seniority bonus) |
+
+### Salary Formula
+
+```
+salary = baseSalary × currencyRate × (seniorityMultiplier ^ yearsWorked)
+```
+
+- **baseSalary**: Role-based base salary in USD
+- **currencyRate**: Conversion rate to requested currency
+- **seniorityMultiplier**: Role-specific annual increase rate
+- **yearsWorked**: Calculated from employee's `createdAt` date
+
+### Adding a New Role
+
+To add a new employee role (e.g., `INTERN`):
+
+1. Add the role to `EmployeeRole` enum
+2. Create `InternRoleSalaryCalculator` implementing `RoleSalaryCalculator`
+3. The registry automatically discovers and registers the new calculator via Spring DI
+
+```java
+@Service
+public class InternRoleSalaryCalculator implements RoleSalaryCalculator {
+
+    private static final double SENIORITY_MULTIPLIER = 1.02;
+
+    @Override
+    public EmployeeRole getEmployeeRole() {
+        return EmployeeRole.INTERN;
+    }
+
+    @Override
+    public double calculateSalary(GetSalaryInfoDetail salaryInfoDetail) {
+        // Implementation
+    }
+}
+```
+
+### Example Request
+
+```bash
+curl -X POST http://localhost:8090/api/v1/salary/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "johndoe",
+    "currency": "EUR"
+  }'
+```
+
+---
+
 ## Health Checks
 
 The application includes comprehensive health checks:
@@ -357,16 +491,25 @@ docker run -d \
 
 ## Best Practices Implemented
 
-✅ Clean Code principles
-✅ SOLID principles
-✅ Effective Java patterns
-✅ 12-Factor App methodology
-✅ RESTful API design
-✅ Domain-Driven Design (DDD) concepts
-✅ Separation of Concerns
-✅ Dependency Injection
-✅ Fail-fast approach
-✅ Defensive programming
+- Clean Code principles
+- SOLID principles
+- Effective Java patterns
+- 12-Factor App methodology
+- RESTful API design
+- Domain-Driven Design (DDD) concepts
+- Separation of Concerns
+- Dependency Injection
+- Fail-fast approach
+- Defensive programming
+
+### Design Patterns Used
+
+| Pattern | Usage |
+|---------|-------|
+| **Strategy Pattern** | Role-based salary calculation with interchangeable calculators |
+| **Registry Pattern** | `RoleSalaryCalculatorRegistry` for dynamic strategy lookup |
+| **DTO Pattern** | Separation between API contracts and domain models |
+| **Builder Pattern** | Lombok `@Builder` for immutable object construction |
 
 ---
 

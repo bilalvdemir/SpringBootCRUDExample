@@ -69,7 +69,7 @@ Modern, production-ready Spring Boot 3.x REST API with MongoDB, Redis caching, m
 
 ---
 
-## 🛠️ Quick Start
+## Quick Start
 
 ### 1. Using Docker Compose (Recommended)
 
